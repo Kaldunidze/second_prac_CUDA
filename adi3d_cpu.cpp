@@ -16,16 +16,20 @@ int main(int argc, char *argv[])
     int nx = 256, ny = 256, nz = 256;
     switch (argc)
     {
-    case 2: nx = ny = nz = std::stoi(argv[1]); break;
+    case 2:
+        nx = ny = nz = std::stoi(argv[1]);
+        break;
     case 4:
         nx = std::stoi(argv[1]);
         ny = std::stoi(argv[2]);
         nz = std::stoi(argv[3]);
         break;
-    default: break;
+    default:
+        break;
     }
 
-    auto IDX = [&](int i, int j, int k) { return i * ny * nz + j * nz + k; };
+    auto IDX = [&](int i, int j, int k)
+    { return i * ny * nz + j * nz + k; };
 
     std::vector<double> a(nx * ny * nz);
 
@@ -35,8 +39,8 @@ int main(int argc, char *argv[])
         for (int j = 0; j < ny; j++)
             for (int k = 0; k < nz; k++)
                 a[IDX(i, j, k)] = (k == 0 || k == nz - 1 || j == 0 || j == ny - 1 || i == 0 || i == nx - 1)
-                    ? 10.0 * i / (nx - 1) + 10.0 * j / (ny - 1) + 10.0 * k / (nz - 1)
-                    : 0.0;
+                                      ? 10.0 * i / (nx - 1) + 10.0 * j / (ny - 1) + 10.0 * k / (nz - 1)
+                                      : 0.0;
 
     double eps = 0.0;
     int it;
@@ -81,10 +85,11 @@ int main(int argc, char *argv[])
               << (std::abs(eps - 0.07249074) < 1e-6 ? "SUCCESSFUL" : "UNSUCCESSFUL") << "\n"
               << " END OF ADI Benchmark\n";
 
+#ifdef SAVE_OUTPUT
     std::ofstream out("adi3d_cpu_out", std::ios::binary);
     out.write(reinterpret_cast<const char *>(a.data()),
               static_cast<std::streamsize>(nx * ny * nz * sizeof(double)));
+#endif
 
     return 0;
 }
-
