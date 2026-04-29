@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
     auto end = std::chrono::steady_clock::now();
     double elapsed = std::chrono::duration<double>(end - start).count();
 
-    std::cout << std::defaultfloat
+    std::cout << std::resetiosflags(std::ios::floatfield)
               << " ADI Benchmark Completed.\n"
               << " Size            = " << nx << " x " << ny << " x " << nz << "\n"
               << " Iterations      =       " << itmax << "\n"
