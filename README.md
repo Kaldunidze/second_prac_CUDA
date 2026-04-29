@@ -18,16 +18,16 @@ make run_compare
 #Результаты запуска текущей версии на polus
 
 ```
-Sender: LSF System <lsfadmin@polus-c3-ib.bmc.hpc.cs.msu.ru>
-Subject: Job 1538738: <./adi3d_gpu 900> in cluster <MSUCluster> Done
+Sender: LSF System <lsfadmin@polus-c4-ib.bmc.hpc.cs.msu.ru>
+Subject: Job 1538739: <./adi3d_gpu 900> in cluster <MSUCluster> Done
 
-Job <./adi3d_gpu 900> was submitted from host <polus-ib.bmc.hpc.cs.msu.ru> by user <edu-cmc-nvidia26-04> in cluster <MSUCluster> at Wed Apr 29 20:53:47 2026
-Job was executed on host(s) <polus-c3-ib.bmc.hpc.cs.msu.ru>, in queue <short>, as user <edu-cmc-nvidia26-04> in cluster <MSUCluster> at Wed Apr 29 20:53:47 2026
+Job <./adi3d_gpu 900> was submitted from host <polus-ib.bmc.hpc.cs.msu.ru> by user <edu-cmc-nvidia26-04> in cluster <MSUCluster> at Wed Apr 29 21:06:00 2026
+Job was executed on host(s) <polus-c4-ib.bmc.hpc.cs.msu.ru>, in queue <short>, as user <edu-cmc-nvidia26-04> in cluster <MSUCluster> at Wed Apr 29 21:06:00 2026
 </home_edu/edu-cmc-nvidia26/edu-cmc-nvidia26-04> was used as the home directory.
 </home_edu/edu-cmc-nvidia26/edu-cmc-nvidia26-04/second_prac_CUDA> was used as the working directory.
-Started at Wed Apr 29 20:53:47 2026
-Terminated at Wed Apr 29 20:53:56 2026
-Results reported at Wed Apr 29 20:53:56 2026
+Started at Wed Apr 29 21:06:00 2026
+Terminated at Wed Apr 29 21:06:04 2026
+Results reported at Wed Apr 29 21:06:04 2026
 
 Your job looked like:
 
@@ -40,16 +40,16 @@ Successfully completed.
 
 Resource usage summary:
 
-    CPU time :                                   6.47 sec.
-    Max Memory :                                 5575 MB
-    Average Memory :                             4181.50 MB
+    CPU time :                                   3.20 sec.
+    Max Memory :                                 14 MB
+    Average Memory :                             9.67 MB
     Total Requested Memory :                     -
     Delta Memory :                               -
     Max Swap :                                   -
     Max Processes :                              3
     Max Threads :                                6
-    Run time :                                   13 sec.
-    Turnaround time :                            9 sec.
+    Run time :                                   4 sec.
+    Turnaround time :                            4 sec.
 
 The output (if any) follows:
 
@@ -66,7 +66,8 @@ The output (if any) follows:
  ADI Benchmark Completed.
  Size            = 900 x 900 x 900
  Iterations      =       10
- Time in seconds =       3.96
+ Time in seconds =       3.15
  Operation type  =   double precision
  END OF ADI Benchmark
+
 ```
