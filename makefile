@@ -3,8 +3,8 @@ GXX = g++
 
 ARCH = -arch=sm_60
 
-NVCC_FLAGS = $(ARCH) -std=c++11 -O2 --expt-extended-lambda -Xcompiler=-Wall,-Wextra
-GXX_FLAGS = -std=c++11 -O2 -fopenmp -Wall -Wextra
+NVCC_FLAGS = $(ARCH) -std=c++11 -O3 --expt-extended-lambda -Xcompiler=-Wall,-Wextra
+GXX_FLAGS = -std=c++11 -O3 -fopenmp -Wall -Wextra
 
 all: adi3d_cpu adi3d_gpu compare
 

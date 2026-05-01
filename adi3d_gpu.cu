@@ -187,6 +187,9 @@ int main(int argc, char *argv[])
     double *buf = thrust::raw_pointer_cast(b.data());
     double *eps_buf = thrust::raw_pointer_cast(row_eps.data());
 
+    // Collect eps per iteration; print after timing to avoid I/O in the hot loop
+    double eps_log[itmax];
+
     for (it = 1; it <= itmax; it++)
     {
         sweep_x(cur, nx, ny, nz);
@@ -194,9 +197,7 @@ int main(int argc, char *argv[])
         sweep_z(cur, buf, eps_buf, nx, ny, nz);
 
         eps = thrust::reduce(row_eps.begin(), row_eps.end(), 0.0, thrust::maximum<double>());
-
-        std::cout << " IT = " << std::setw(4) << it
-                  << "   EPS = " << std::scientific << std::setprecision(7) << eps << "\n";
+        eps_log[it - 1] = eps;
         if (eps < maxeps)
             break;
     }
@@ -204,6 +205,10 @@ int main(int argc, char *argv[])
     cudaDeviceSynchronize();
     auto end = std::chrono::steady_clock::now();
     double elapsed = std::chrono::duration<double>(end - start).count();
+
+    for (int i = 0; i < it && i < itmax; i++)
+        std::cout << " IT = " << std::setw(4) << (i + 1)
+                  << "   EPS = " << std::scientific << std::setprecision(7) << eps_log[i] << "\n";
 
     std::cout << std::resetiosflags(std::ios::floatfield)
               << " ADI Benchmark Completed.\n"
