@@ -12,9 +12,9 @@
 
 // реализация транспозиции --- https://oz.nthu.edu.tw/~d947207/index_3Ddata.htm
 
-static const int BLOCK = 16;
+static const int BLOCK = 32;
 
-__global__ void xyz2zxy_kernel(double * __restrict__ Y, const double * __restrict__ X,
+__global__ void xyz2zxy_kernel(double *Y, double *X,
     int nx, int ny, int nz, int Gy, int Gz, float rGy, float rGz, int k2)
 {
     __shared__ double tile[BLOCK][BLOCK + 1];
@@ -34,7 +34,7 @@ __global__ void xyz2zxy_kernel(double * __restrict__ Y, const double * __restric
         Y[k * nx * ny + i * ny + j] = tile[threadIdx.x][threadIdx.y];
 }
 
-__global__ void zxy2xyz_kernel(double * __restrict__ X, const double * __restrict__ Y,
+__global__ void zxy2xyz_kernel(double *X, double *Y,
     int nx, int ny, int nz, int Gy, int Gz, float rGy, float rGz, int k2)
 {
     __shared__ double tile[BLOCK][BLOCK + 1];
@@ -110,7 +110,7 @@ __global__ void sweep_y_kernel(double *a, int nx, int ny, int nz)
             (a[i * ny * nz + (j - 1) * nz + k] + a[i * ny * nz + (j + 1) * nz + k]) / 2.0;
 }
 
-__global__ void sweep_z_transposed_kernel(double *a, double * __restrict__ row_eps, int nz, int nx, int ny)
+__global__ void sweep_z_transposed_kernel(double *a, double *row_eps, int nz, int nx, int ny)
 {
     int i = blockIdx.y * blockDim.y + threadIdx.y + 1;
     int j = blockIdx.x * blockDim.x + threadIdx.x + 1;
